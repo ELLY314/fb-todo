@@ -1,0 +1,13 @@
+body {
+  background: skyblue;
+}
+.container {
+  margin: auto;
+  max-width: 600px;
+}
+.todo-block {
+  padding: 30px;
+  margin-top: 50px;
+  background: white;
+  border-radius: 10px;
+}
