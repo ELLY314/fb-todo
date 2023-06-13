@@ -1,13 +1,8 @@
 import React from "react";
 
 const ListItem = ({ item, todoData, setTodoData }) => {
-  const getStyle = _completed => {
-    return {
-      padding: "10px",
-      borderBottom: "1px dotted #ccc",
-      textDecoration: _completed ? "line-through" : "none",
-    };
-  };
+  console.log("ListItem 랜더링");
+
   const btnStyle = {
     color: "#fff",
     float: "right",
@@ -15,6 +10,13 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     padding: "5px 9px",
     borderRadius: "50%",
     cursor: "pointer",
+  };
+  const getStyle = _completed => {
+    return {
+      padding: "10px",
+      borderBottom: "1px dotted #ccc",
+      textDecoration: _completed ? "line-through" : "none",
+    };
   };
 
   // 이벤트 핸들러
