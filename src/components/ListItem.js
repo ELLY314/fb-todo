@@ -24,6 +24,8 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     // 3. 배열의 고차함수 중 filter를 사용
     const newTodoData = todoData.filter(item => item.id !== _id);
     setTodoData(newTodoData);
+    // 로컬스토리지 저장
+    localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
   };
   const handleEditClick = _id => {
     console.log(_id);
@@ -43,6 +45,8 @@ const ListItem = ({ item, todoData, setTodoData }) => {
       return item;
     });
     setTodoData(newTodoData);
+    // 로컬스토리지 저장
+    localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
     setIsEdit(false);
   };
   const handleCompleteChange = _id => {
@@ -57,6 +61,8 @@ const ListItem = ({ item, todoData, setTodoData }) => {
       return item;
     });
     setTodoData(newTodoData);
+    // 로컬스토리지 저장
+    localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
   };
 
   if (isEdit) {
