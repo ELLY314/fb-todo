@@ -37,11 +37,7 @@ const Form = ({ todoData, setTodoData }) => {
   };
   return (
     <div>
-      <form
-        className="flex pt-2"
-        style={{ display: "flex", gap: "0 10px" }}
-        onSubmit={handleSubmit}
-      >
+      <form className="flex pt-2" style={{ display: "flex", gap: "0 10px" }} onSubmit={handleSubmit}>
         <input
           type="text"
           name="value"
@@ -51,12 +47,7 @@ const Form = ({ todoData, setTodoData }) => {
           onChange={handleChange}
           className="w-full px-3 py-2 mr-4 text-gray-500 border rounded shadow"
         />
-        <input
-          type="submit"
-          style={{ flex: "1" }}
-          value="입력"
-          className="p-2 text-blue-400 border-2 border-blue-400 rounded hover:text-white hover:bg-blue-400"
-        />
+        <input type="submit" style={{ flex: "1" }} value="입력" className="p-2 text-blue-400 border-2 border-blue-400 rounded hover:text-white hover:bg-blue-400" />
       </form>
     </div>
   );

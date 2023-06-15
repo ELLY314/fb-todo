@@ -1,16 +1,24 @@
 import React, { useState } from "react";
 import SignupDiv from "../style/UserCss";
 import { useNavigate } from "react-router-dom";
-
+// firebase연동
+import firebase from "../firebase";
 const SignUp = () => {
   const navigate = useNavigate();
   const [nickName, setNickName] = useState("");
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [pwConfirm, setPwConfirm] = useState("");
-  const handleSignUp = e => {
+  const handleSignUp = async e => {
     e.preventDefault();
-    // firebase에 회원가입 하기
+
+    // firebase 에 회원가입 하기
+    let createUser = await firebase.auth().createUserWithEmailAndPassword(email, pw);
+
+    await createUser.user.updateProfile({
+      name: nickName,
+    });
+    console.log("등록된 정보 : ", createUser.user);
   };
   return (
     <div className="p-6 shadow rounded-lg bg-white mt-5">
