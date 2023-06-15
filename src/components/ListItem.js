@@ -26,6 +26,7 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
     // 로컬스토리지 저장
     localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
+    // axios post 호출 fbtodolist 삭제하기
   };
   const handleEditClick = _id => {
     console.log(_id);
@@ -47,7 +48,9 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
     // 로컬스토리지 저장
     localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
+    // axios patch/put 호출 fbtodolist 수정하기
     setIsEdit(false);
+    
   };
   const handleCompleteChange = _id => {
     // id에 해당하는 것만 수정하면 되지 않다. XXX
@@ -63,6 +66,7 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     setTodoData(newTodoData);
     // 로컬스토리지 저장
     localStorage.setItem("fbTodoData", JSON.stringify(newTodoData));
+    // axios patch/put 호출 fbtodolist 수정하기
   };
 
   if (isEdit) {
@@ -70,12 +74,20 @@ const ListItem = ({ item, todoData, setTodoData }) => {
     return (
       <div className="flex items-center justify-between w-full mb-2 px-4 py-1 text-gray-600 bg-gray-100 border rounded ">
         <div className="items-center w-3/5">
-          <input className="w-full px-3 py-2 mr-3 text-gray-500 rounded" type="text" value={editTitle} onChange={handleEditChange} />
+          <input
+            className="w-full px-3 py-2 mr-3 text-gray-500 rounded"
+            type="text"
+            defaultValue={item.title}
+            onChange={e => handleEditChange(e)}
+          />
           {/* defaultChecked : 체크박스에 기본체크 상태 설정 */}
         </div>
 
         <div className="items-center ">
-          <button className="px-4 py-2" onClick={() => handleSaveClick(item.id)}>
+          <button
+            className="px-4 py-2"
+            onClick={() => handleSaveClick(item.id)}
+          >
             Save
           </button>
           <button className="px-4 py-2" onClick={handleCancelClick}>
@@ -89,7 +101,11 @@ const ListItem = ({ item, todoData, setTodoData }) => {
       <div className="flex items-center justify-between w-full mb-2 px-4 py-1 text-gray-600 bg-gray-100 border rounded ">
         <div className="items-center flex" style={getStyle(item.completed)}>
           {/* defaultChecked : 체크박스에 기본체크 상태 설정 */}
-          <input type="checkbox" defaultChecked={item.completed} onChange={() => handleCompleteChange(item.id)} />
+          <input
+            type="checkbox"
+            defaultChecked={item.completed}
+            onChange={() => handleCompleteChange(item.id)}
+          />
           <span className="ml-3">{item.title}</span>
         </div>
 
@@ -97,8 +113,11 @@ const ListItem = ({ item, todoData, setTodoData }) => {
           <button className="px-4 py-2" onClick={handleEditClick}>
             Edit
           </button>
-          <button className="px-4 py-2" onClick={() => handleDeleteClick(item.id)}>
-            X
+          <button
+            className="px-4 py-2"
+            onClick={() => handleDeleteClick(item.id)}
+          >
+            Delete
           </button>
         </div>
       </div>
