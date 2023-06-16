@@ -7,10 +7,11 @@
   padding: 0;
   box-sizing: border-box;
   outline: none;
+  color: inherit;
 }
 a {
   text-decoration: none;
-  color: #000;
+  color: inherit;
 }
 img {
   vertical-align: middle;

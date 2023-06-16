@@ -11,15 +11,31 @@ const SignUp = () => {
   const [pwConfirm, setPwConfirm] = useState("");
   const handleSignUp = async e => {
     e.preventDefault();
-
-    // firebase 에 회원가입 하기
-    let createUser = await firebase.auth().createUserWithEmailAndPassword(email, pw);
-
-    await createUser.user.updateProfile({
-      name: nickName,
-    });
-    console.log("등록된 정보 : ", createUser.user);
+    try {
+      // Firebase 에 회원가입 하기
+      let creatUser = await firebase.auth().createUserWithEmailAndPassword(email, pw);
+      // 회원 가입이 성공시 사용자 이름을 업데이트
+      await creatUser.user.updateProfile({
+        displayName: nickName,
+      });
+      // 로그인 창으로 이동
+      navigate("/login");
+      console.log("등록된 정보 : ", creatUser.user);
+    } catch (error) {
+      // 회원가입 시 에러 처리
+      console.log(error.Code);
+      if (error.code == "auth/email-already-in-use") {
+        alert("The email address is already in use");
+      } else if (error.code == "auth/invalid-email") {
+        alert("The email address is not valid.");
+      } else if (error.code == "auth/operation-not-allowed") {
+        alert("Operation not allowed.");
+      } else if (error.code == "auth/weak-password") {
+        alert("The password is too weak.");
+      }
+    }
   };
+
   return (
     <div className="p-6 shadow rounded-lg bg-white mt-5">
       <h2>Signup</h2>
